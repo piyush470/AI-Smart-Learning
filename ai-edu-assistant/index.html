@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+
+<link rel="stylesheet" href="register.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <h2>🚀 Create Account</h2>
+        <p>Join AI Smart Learning</p>
+
+        <form>
+
+            <input type="text" placeholder="Full Name" required>
+
+            <input type="email" placeholder="Email Address" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+
+            <!-- USER TYPE -->
+            <select>
+                <option>Student</option>
+                <option>Teacher</option>
+            </select>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <p class="link">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+// show/hide password
+const pass = document.getElementById("password");
+
+pass.addEventListener("focus", () => {
+    pass.type = "text";
+});
+pass.addEventListener("blur", () => {
+    pass.type = "password";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>AI Chatbot</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="chat.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="menu-btn" id="menuBtn">☰</div>
+
+<div class="sidebar" id="sidebar">
+    <h2>🤖 AI Learn</h2>
+    <a href="dashboard.html" class="nav-link">🏠 Dashboard</a>
+    <a href="index.html" class="nav-link active">💬 Chatbot</a>
+    <a href="quiz.html" class="nav-link">❓ Quiz</a>
+    <a href="settings.html" class="nav-link">⚙ Settings</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="main">
+
+<div class="header">
+    <h1>💬 AI Chatbot</h1>
+    <button id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+</div>
+
+<div class="chat-container">
+
+    <div class="chat-box" id="chatBox"></div>
+
+    <div class="chat-input">
+        <input id="userInput" placeholder="Ask something...">
+        <button onclick="sendMessage()">➤</button>
+        <button onclick="startVoice()" title="Speak">🎤</button>
+
+        <!-- SPEAK CONTROL -->
+        <button onclick="toggleSpeak()" id="speakBtn">🔊</button>
+        <button onclick="stopSpeak()">⏹</button>
+    </div>
+
+</div>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ---------- UTILS ----------
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function formatText(text) {
+        return text
+            .replace(/\*\*/g, "")
+            .replace(/\*/g, "")
+            .replace(/```/g, "")
+            .replace(/#/g, "");
+    }
+
+    async function typeText(element, text) {
+        element.innerHTML = "";
+        for (let i = 0; i < text.length; i++) {
+            element.innerHTML += text[i];
+            await sleep(12);
+        }
+    }
+
+    // ---------- SPEECH ----------
+    let isSpeakingEnabled = true;
+
+    window.toggleSpeak = function () {
+        isSpeakingEnabled = !isSpeakingEnabled;
+        const btn = document.getElementById("speakBtn");
+
+        btn.innerText = isSpeakingEnabled ? "🔊" : "🔇";
+
+        if (!isSpeakingEnabled) {
+            window.speechSynthesis.cancel();
+        }
+    };
+
+    window.stopSpeak = function () {
+        window.speechSynthesis.cancel();
+    };
+
+    function speakText(text) {
+        if (!isSpeakingEnabled) return;
+
+        window.speechSynthesis.cancel();
+
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "en-US";
+
+        window.speechSynthesis.speak(speech);
+    }
+
+    // ---------- MAIN ----------
+    window.sendMessage = async function () {
+        const input = document.getElementById("userInput");
+        const chatBox = document.getElementById("chatBox");
+
+        if (!input.value.trim()) return;
+
+        let userText = input.value;
+
+        chatBox.innerHTML += `<div class="message user">${userText}</div>`;
+        input.value = "";
+
+        const botDiv = document.createElement("div");
+        botDiv.className = "message bot";
+        botDiv.innerHTML = "Typing...";
+        chatBox.appendChild(botDiv);
+
+        try {
+            const res = await fetch("http://127.0.0.1:8000/ask", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: userText })
+            });
+
+            const data = await res.json();
+            let cleanText = formatText(data.answer || "No response");
+
+            await typeText(botDiv, cleanText);
+            speakText(cleanText);
+
+        } catch (err) {
+            botDiv.innerHTML = "Error connecting to AI";
+        }
+    };
+
+    // ---------- ENTER ----------
+    document.getElementById("userInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            window.sendMessage();
+        }
+    });
+
+    // ---------- VOICE ----------
+    window.startVoice = function () {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            alert("Voice not supported");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.start();
+
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+            document.getElementById("userInput").value = text;
+            window.sendMessage();
+        };
+    };
+
+});
+</script>
+
+</body>
+</html>

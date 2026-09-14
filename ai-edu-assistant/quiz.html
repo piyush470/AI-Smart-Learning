@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="quiz.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="menu-btn" id="menuBtn">☰</div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>🤖 AI Learn</h2>
+        <a href="dashboard.html" class="nav-link">🏠 Dashboard</a>
+        <a href="index.html" class="nav-link">💬 Chatbot</a>
+        <a href="quiz.html" class="nav-link active">❓ Quiz</a>
+        <a href="settings.html" class="nav-link">⚙ Settings</a>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main">
+
+        <div class="header">
+            <h1>🧠 Smart Quiz</h1>
+            <button id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+
+
+
+        <!-- AI QUIZ -->
+        <div class="quiz-generator">
+            <input id="quizTopic" placeholder="Enter topic for AI quiz">
+            <button onclick="generateAIQuiz()" style=" background: linear-gradient(135deg, #ff6a8a, #ff3d6e);">Generate AI Quiz</button>
+        </div>
+
+        <div id="timer">⏱ 60s</div>
+
+        <!-- QUIZ OUTPUT -->
+        <div id="quizBox"></div>
+
+        <button class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+
+        <div id="result"></div>
+        <div id="aiFeedback" style="margin-top:10px;"></div>
+
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="quiz.js"></script>
+
+</body>
+
+</html>

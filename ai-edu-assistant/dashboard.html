@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Smart Learning</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="menu-btn" id="menuBtn">☰</div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>🤖 AI Learn</h2>
+        <a href="dashboard.html" class="nav-link active">🏠 Dashboard</a>
+        <a href="index.html" class="nav-link">💬 Chatbot</a>
+        <a href="quiz.html" class="nav-link">❓ Quiz</a>
+        <a href="settings.html" class="nav-link">⚙ Settings</a>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div>
+                <h1 class="project-title">AI Smart Learning</h1>
+                <h3 id="greeting"></h3>
+            </div>
+
+            <button id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+
+        <!-- TOP GRID -->
+        <div class="top-grid">
+
+            <div class="profile-card">
+                <img src="std.png" style="width: 100px; height: 100px;">
+                <h3>Welcome 👋</h3>
+                <p id="userName" style="color:#00f5ff; font-size:14px;"></p>
+                <h1 id="quizCount">0</h1>
+                <p>Quizzes Taken</p>
+            </div>
+
+            <div class="courses-box">
+                <h2>Your Learning</h2>
+
+                <div class="course-cards">
+                    <div class="course">
+                        <h3>AI Basics</h3>
+                        <p>46%</p>
+                        <div class="progress-bar">
+                            <div style="width:46%"></div>
+                        </div>
+                    </div>
+
+                    <div class="course">
+                        <h3>Machine Learning</h3>
+                        <p>72%</p>
+                        <div class="progress-bar">
+                            <div style="width:72%"></div>
+                        </div>
+                    </div>
+
+                    <div class="course">
+                        <h3>Data Science</h3>
+                        <p>56%</p>
+                        <div class="progress-bar">
+                            <div style="width:56%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BOTTOM GRID -->
+        <div class="bottom-grid">
+
+            <div class="card">
+                <h3>📊 Accuracy</h3>
+                <p id="accuracy">0%</p>
+            </div>
+            <div class="card">
+                <h3>🎯 Progress</h3>
+                <div class="progress-ring" id="progressRing">0%</div>
+            </div>
+            <!-- FIXED AI BOX -->
+            <div class="feature-box">
+                <h3>💬 AI Assistant</h3>
+                <div class="ai-input">
+                    <input id="dashInput" placeholder="Ask something...">
+                    <button onclick="sendDashMessage()">➤</button>
+                    <button onclick="stopSpeak()">⏹</button>
+                </div>
+                <div id="dashResponse"></div>
+            </div>
+            <div class="feature-box daily-box">
+                <h3>📅 AI Daily Coach</h3>
+
+                <button class="generate-btn" onclick="generateDailyPlan()">
+                    Generate Plan
+                </button>
+
+                <div id="dailyPlan"></div>
+            </div>
+            <!-- AI NOTES GENERATOR -->
+            <div class="feature-box fixed-box">
+                <h3>📝 AI Notes Generator</h3>
+
+                <div class="ai-input">
+                    <input id="notesInput" placeholder="Enter topic (e.g. AI, DBMS)">
+                    <button onclick="generateNotes()">Generate</button>
+                </div>
+                <div id="notesOutput" class="notes-output"></div>
+            </div>
+            <!-- AI RECOMMENDATION SYSTEM -->
+            <div class="feature-box fixed-box">
+                <h3>🎯 Smart Recommendations</h3>
+
+                <div class="ai-input">
+                    <input id="recInput" placeholder="Enter topic (e.g. AI, Java)">
+                    <button onclick="getRecommendations()">Suggest</button>
+                </div>
+
+                <div id="recOutput" class="rec-output"></div>
+            </div>
+            <div class="feature-box">
+                <h3>📊 Performance Insights</h3>
+                <div id="insightBox">No data yet</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ACTION SECTION -->
+    <div class="actions">
+
+        <div class="action-card chatbot">
+            <h3>💬 AI Chatbot</h3>
+            <p>Ask doubts instantly</p>
+            <a href="index.html" class="action-btn">Open Chat</a>
+        </div>
+
+        <div class="action-card quiz">
+            <h3 style="color: white;">❓ Quiz</h3>
+            <p style="color: white;">Test your knowledge</p>
+            <a href="quiz.html" class="action-btn">Start Quiz</a>
+        </div>
+
+    </div>
+
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

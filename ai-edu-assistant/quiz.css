@@ -1,0 +1,184 @@
+/* CONTROLS */
+/* LIGHT MODE FIX FOR OPTIONS */
+body.light .option {
+    background: #e5e7eb;
+    color: #111;
+}
+
+body.light .option:hover {
+    background: #60a5fa; /* soft blue */
+    color: white;
+}
+
+body.light .option.selected {
+    background: #2563eb; /* strong blue */
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+.quiz-controls {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quiz-controls input,
+.quiz-controls select {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* GENERATE BUTTON */
+.quiz-generator button {
+    position: relative;
+    padding: 10px 16px;
+    margin-top: 10px;
+    border-radius: 30px;
+    border: none;
+
+    background: linear-gradient(135deg, #ff6a8a, #ff3d6e);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 61, 110, 0.4);
+}
+
+/* Hover */
+.quiz-generator button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(255, 61, 110, 0.6);
+}
+
+/* Glow effect */
+.quiz-generator button::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 30px;
+   
+    filter: blur(18px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.generate-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(255,215,0,0.6);
+}
+
+/* TIMER */
+#timer {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+/* QUESTION CARD */
+.question-card {
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* OPTIONS */
+.option {
+    display: block;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background: #333;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option:hover {
+    background: #04d9ff;
+    color: black;
+}
+
+/* SELECTED */
+.option.selected {
+    background: #02b5f5;
+    color: black;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+    margin-top: 15px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00c853, #00e676);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0,200,83,0.6);
+}
+
+/* RESULT */
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* LIGHT MODE */
+body.light .question-card {
+    background: #f1f1f1;
+}
+
+body.light .option {
+    background: #ddd;
+    color: black;
+}
+.quiz-generator {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.quiz-generator input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+.quiz-generator button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #ffd700;
+    cursor: pointer;
+}
+
+/* ================= RESULT COLORS ================= */
+.correct {
+    background-color: #d4edda !important;
+    border: 2px solid #28a745;
+    color: #155724 !important;
+}
+
+.wrong {
+    background-color: #f8d7da !important;
+    border: 2px solid #dc3545;
+    color: #721c24 !important;
+}
+
+/* Light mode fix */
+body.light .correct {
+    background-color: #bbf7d0 !important;
+}
+
+body.light .wrong {
+    background-color: #fecaca !important;
+}

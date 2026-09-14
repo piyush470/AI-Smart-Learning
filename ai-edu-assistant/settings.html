@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Settings</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="settings.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="menu-btn" id="menuBtn">☰</div>
+
+<div class="sidebar" id="sidebar">
+    <h2>🤖 AI Learn</h2>
+    <a href="dashboard.html" class="nav-link">🏠 Dashboard</a>
+    <a href="index.html" class="nav-link">💬 Chatbot</a>
+    <a href="quiz.html" class="nav-link">❓ Quiz</a>
+    <a href="settings.html" class="nav-link active">⚙ Settings</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="main">
+
+<!-- HEADER -->
+<div class="header">
+    <h1>⚙ Settings</h1>
+    <button id="themeBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
+</div>
+
+<!-- SETTINGS BOX -->
+<div class="settings-container">
+
+    <!-- USER TYPE -->
+    <div class="setting-card">
+        <h3>User Type</h3>
+        <select id="userType">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+    </div>
+
+    <!-- DEFAULT QUIZ LEVEL -->
+    <div class="setting-card">
+        <h3>Default Quiz Difficulty</h3>
+        <select id="defaultLevel">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="setting-card">
+        <h3>Notifications</h3>
+        <label class="switch">
+            <input type="checkbox" id="notifications">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- RESET -->
+    <div class="setting-card danger">
+        <h3>Reset Data</h3>
+        <button onclick="resetData()">Reset All</button>
+    </div>
+    <div class="setting-card danger">
+    <h3>Logout</h3>
+    <p>End your current session</p>
+    <button onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<button class="save-btn" onclick="saveSettings()">Save Settings</button>
+
+</div>
+
+<script src="dashboard.js"></script>
+<script src="settings.js"></script>
+
+</body>
+</html>
